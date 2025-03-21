@@ -1,11 +1,20 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "J.A.R.V.I.S. - Browser Agent"
+name = "jarvis-browser-agent"
 version = "0.1.0"
-description = "J.A.R.V.I.S. - Browser Agent"
+description = "A browser agent CLI tool named Jarvis"
 readme = "README.md"
 requires-python = ">=3.11"
+license = {text = "MIT"}
 dependencies = [
-    "browser-use>=0.1.36",
-    "click>=8.1.8",
-    "langchain-openai>=0.3.1",
+    "click",
+    "langchain-openai",
+    "python-dotenv",
+    "browser-use",
 ]
+
+[project.scripts]
+jarvis = "runner:jarvis"

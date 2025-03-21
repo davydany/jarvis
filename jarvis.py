@@ -42,7 +42,7 @@ async def main(task: str, output_type: str = "markdown"):
     MySystemPrompt.output_type = output_type
     agent = Agent(
         task=task,
-        llm=ChatOpenAI(model='gpt-4o'),
+        llm=llm,
         system_prompt_class=MySystemPrompt,
         # browser=browser,
     )
@@ -51,7 +51,7 @@ async def main(task: str, output_type: str = "markdown"):
     if result:
         click.secho(result, fg='yellow')
     else:
-        print("No results found.", fg='red')
+        click.secho("No results found.", fg='red')
 
 
 
@@ -65,11 +65,10 @@ def jarvis(task: str, output_type: str):
     click.clear()
     click.secho("Welcome to the Jarvis CLI!", fg="green")
     click.secho(f"Received Task: {task}", fg="cyan")
-
-    asyncio.run(main(task))
-
-
     click.secho("Processing task...", fg="yellow")
+
+    asyncio.run(main(task, output_type))
+
 
 if __name__ == "__main__":
     jarvis()
